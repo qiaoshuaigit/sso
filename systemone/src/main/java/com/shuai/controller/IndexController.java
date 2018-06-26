@@ -16,4 +16,16 @@ public class IndexController {
     public String index(){
         return "index";
     }
+
+    @RequestMapping("/loginSuccess")
+    public String loginSuccess(){
+
+       return "success";
+    }
+
+    @RequestMapping("/failureUrl")
+    public String failureUrl(){
+
+        return "fail";
+    }
 }

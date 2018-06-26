@@ -20,7 +20,7 @@
 			<value>
 				/shiro-cas = casFilter
 				/logout = logoutFilter
-				/users/** = user
+				/** = user
 			</value>
 		</property>
 	</bean>
