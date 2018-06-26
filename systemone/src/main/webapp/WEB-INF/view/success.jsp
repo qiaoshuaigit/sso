@@ -12,11 +12,12 @@
 <head>
     <title>Title</title>
 
-    <link href="/resources/css/style.css" rel="stylesheet">
 </head>
 <body>
 
-<h2>登录成功</h2>
+<h2>systemone登录成功</h2>
+
+<a href="http://127.0.0.1:8082/index/welcome">跳转到systemtwo应用</a>
 
 </body>
 </html>

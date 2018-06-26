@@ -12,7 +12,6 @@
 <head>
     <title>Title</title>
 
-    <link href="/resources/css/style.css" rel="stylesheet">
 </head>
 <body>
 
