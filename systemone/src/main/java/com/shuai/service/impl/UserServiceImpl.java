@@ -6,6 +6,7 @@ import com.shuai.service.UserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -41,6 +42,12 @@ public class UserServiceImpl implements UserService {
 	public User getUserByAccount(String account) {
 		
 		return userMapper.getUserByAccount(account);
+	}
+
+	@Override
+	public List<User> getUserList() {
+
+		return userMapper.getUserList();
 	}
 
 }

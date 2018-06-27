@@ -1,6 +1,8 @@
 package com.shuai.controller;
 
+import org.apache.shiro.SecurityUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -18,7 +20,8 @@ public class IndexController {
     }
 
     @RequestMapping("/loginSuccess")
-    public String loginSuccess(){
+    public String loginSuccess(Model model){
+        model.addAttribute("user", SecurityUtils.getSubject().getPrincipal());
 
        return "success";
     }

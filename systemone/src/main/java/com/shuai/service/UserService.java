@@ -3,6 +3,8 @@ package com.shuai.service;
 
 import com.shuai.entity.User;
 
+import java.util.List;
+
 public interface UserService {
 	
 	User getUser(int userId);
@@ -19,5 +21,7 @@ public interface UserService {
 	 * @time 2016年8月22日 下午12:01:15
 	 */
 	User getUserByAccount(String account);
+
+	List<User> getUserList();
 
 }

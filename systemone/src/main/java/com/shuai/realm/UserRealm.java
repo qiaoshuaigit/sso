@@ -10,6 +10,8 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.cas.CasRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.Resource;
@@ -30,6 +32,8 @@ public class UserRealm extends CasRealm {
 	@Autowired
 	private UserService userService;
 
+	private Logger logger = LoggerFactory.getLogger(getClass());
+
 	protected final Map<String, SimpleAuthorizationInfo> roles = new ConcurrentHashMap<String, SimpleAuthorizationInfo>();
 	
 	/**
@@ -37,6 +41,8 @@ public class UserRealm extends CasRealm {
 	 */
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+
+		logger.info("----权限-----doGetAuthorizationInfo-----------");
 
 		String account = (String) principals.getPrimaryPrincipal();
 		SimpleAuthorizationInfo authorizationInfo = null;
@@ -56,6 +62,8 @@ public class UserRealm extends CasRealm {
 	 * 2、将用户基本信息设置到会话中
 	 */
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) {
+
+		logger.info("----认证-----doGetAuthenticationInfo-----------");
 
 		AuthenticationInfo authc = super.doGetAuthenticationInfo(token);
 

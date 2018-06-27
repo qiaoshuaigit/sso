@@ -20,6 +20,7 @@
 			<value>
 				/shiro-cas = casFilter
 				/logout = logoutFilter
+				/user/** = anon
 				/** = user
 			</value>
 		</property>
