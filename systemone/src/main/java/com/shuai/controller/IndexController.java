@@ -1,6 +1,8 @@
 package com.shuai.controller;
 
 import org.apache.shiro.SecurityUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/index")
 public class IndexController {
 
+    private Logger logger = LoggerFactory.getLogger(getClass());
+
     @RequestMapping("/welcome")
     public String index(){
         return "index";
@@ -21,7 +25,9 @@ public class IndexController {
 
     @RequestMapping("/loginSuccess")
     public String loginSuccess(Model model){
-        model.addAttribute("user", SecurityUtils.getSubject().getPrincipal());
+        String user = (String) SecurityUtils.getSubject().getPrincipal();
+        model.addAttribute("user", user);
+        logger.info(user+" 登录成功,获取用户菜单");
 
        return "success";
     }
