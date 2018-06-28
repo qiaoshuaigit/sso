@@ -34,7 +34,7 @@
         </javaClientGenerator>
 
 
-        <table tableName="t_user_role" domainObjectName="UserRole"
+        <table tableName="t_user_menu" domainObjectName="UserMenu"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
