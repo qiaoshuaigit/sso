@@ -1,0 +1,135 @@
+
+/**file list*/
+.file-list li {
+    vertical-align: top;
+    display: inline-block;
+    width: 96px;
+    height: 120px;
+    margin-right: 10px;
+    margin-bottom: 10px;position: relative;
+}
+
+.file-list li a {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-image: url("../img/file/i_unknown.png");
+    background-repeat: no-repeat;
+}
+.file-list li a.i_png{
+    background-image: url("../img/file/i_png.png");
+}
+.file-list li a.i_jpg{
+    background-image: url("../img/file/i_jpg.png");
+}
+.file-list li a.i_7z{
+    background-image: url("../img/file/i_7z.png");
+}
+.file-list li a.i_ai{
+    background-image: url("../img/file/i_ai.png");
+}
+.file-list li a.i_bat{
+    background-image: url("../img/file/i_bat.png");
+}
+.file-list li a.i_bmp{
+    background-image: url("../img/file/i_bmp.png");
+}
+.file-list li a.i_css{
+    background-image: url("../img/file/i_css.png");
+}
+.file-list li a.i_doc,.file-list li a.i_docx{
+    background-image: url("../img/file/i_doc.png");
+}
+.file-list li a.i_exe{
+    background-image: url("../img/file/i_exe.png");
+}
+.file-list li a.i_fla{
+    background-image: url("../img/file/i_fla.png");
+}
+.file-list li a.i_fw{
+    background-image: url("../img/file/i_fw.png");
+}
+.file-list li a.i_gif{
+    background-image: url("../img/file/i_gif.png");
+}
+.file-list li a.i_html{
+    background-image: url("../img/file/i_html.png");
+}
+.file-list li a.i_jpg{
+    background-image: url("../img/file/i_jpg.png");
+}
+.file-list li a.i_js{
+    background-image: url("../img/file/i_js.png");
+}
+
+.file-list li a.i_mp3{
+    background-image: url("../img/file/i_mp3.png");
+}
+.file-list li a.i_pdf{
+    background-image: url("../img/file/i_pdf.png");
+}
+.file-list li a.i_png{
+    background-image: url("../img/file/i_png.png");
+}
+.file-list li a.i_ppt{
+    background-image: url("../img/file/i_ppt.png");
+}
+.file-list li a.i_psd{
+    background-image: url("../img/file/i_psd.png");
+}
+.file-list li a.i_rar{
+    background-image: url("../img/file/i_rar.png");
+}
+.file-list li a.i_swf{
+    background-image: url("../img/file/i_swf.png");
+}
+.file-list li a.i_txt{
+    background-image: url("../img/file/i_txt.png");
+}
+.file-list li a.i_mp4,.file-list li a.i_wma,.file-list li a.i_mkv{
+    background-image: url("../img/file/i_video.png");
+}
+.file-list li a.i_wma{
+    background-image: url("../img/file/i_wma.png");
+}
+.file-list li a.i_xls,.file-list li a.i_xlsx{
+    background-image: url("../img/file/i_xls.png");
+}
+.file-list li a.i_zip{
+    background-image: url("../img/file/i_zip.png");
+}
+
+
+.file-list li a span {
+    display: inline-block;
+    padding: 4px;
+    max-height: 24px;
+    line-height: 18px;
+    position: absolute;
+    bottom: 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 100px;
+}
+.file-list li .remove{
+    display: none;
+    width: 48px;
+    height: 48px;
+    background: rgba(255,0,0,0.5);
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+    padding: 14px;
+    position: absolute;
+    z-index: 2;
+    right: 0;
+    border-radius: 24px;
+    left: 0;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+}
+.file-list li:hover .remove{
+    display: inline-block;
+}

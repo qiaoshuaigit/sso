@@ -2,6 +2,9 @@ package com.shuai.repository;
 
 import com.shuai.entity.Menu;
 
+import java.util.List;
+import java.util.Map;
+
 public interface MenuMapper {
 
     int deleteByPrimaryKey(Integer id);
@@ -15,5 +18,9 @@ public interface MenuMapper {
     int updateByPrimaryKeySelective(Menu record);
 
     int updateByPrimaryKey(Menu record);
+
+    List<Map<String,Object>> getMenuByUser(String userName);
+
+    List<Menu> getParentMenu();
 
 }

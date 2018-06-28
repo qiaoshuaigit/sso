@@ -4,6 +4,7 @@ package com.shuai.service;
 import com.shuai.entity.User;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserService {
 	
@@ -23,5 +24,8 @@ public interface UserService {
 	User getUserByAccount(String account);
 
 	List<User> getUserList();
+
+	List<Map<String,Object>> getMenuByUser(String userName);
+
 
 }

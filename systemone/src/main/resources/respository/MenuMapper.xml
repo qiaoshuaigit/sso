@@ -11,24 +11,48 @@
   <sql id="Base_Column_List" >
     id, name, url, status, parent_id
   </sql>
+
+  <sql id="userClause">
+    limit #{index},#{pageSizes}
+  </sql>
+  <select id="getRecords" parameterType="java.util.Map" resultType="java.util.Map">
+    SELECT * from t_menu
+    <include refid="userClause"/>
+  </select>
+
+  <select id="getRecordsCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+    select count(*) from t_menu
+  </select>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from t_menu
     where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="getMenuByUser" resultType="java.util.Map" parameterType="java.lang.String" >
+    select m.* from t_user_menu um
+    left join t_menu m on um.menu_id = m.id
+    left join t_user u on u.id = um.user_id
+    where u.username = #{userName}
+  </select>
+  <select id="getParentMenu" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_menu WHERE parent_id = 0
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_menu
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.shuai.entity.Menu" >
-    insert into t_menu (id, name, url, 
-      status, parent_id)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
-      #{status,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER})
+    insert into menu (id, name, url,
+    status, parent_id)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR},
+    #{status,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.shuai.entity.Menu" >
-    insert into t_menu
+    insert into menu
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -65,7 +89,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.shuai.entity.Menu" >
-    update t_menu
+    update menu
     <set >
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
@@ -83,11 +107,11 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.shuai.entity.Menu" >
-    update t_menu
+    update menu
     set name = #{name,jdbcType=VARCHAR},
-      url = #{url,jdbcType=VARCHAR},
-      status = #{status,jdbcType=VARCHAR},
-      parent_id = #{parentId,jdbcType=INTEGER}
+    url = #{url,jdbcType=VARCHAR},
+    status = #{status,jdbcType=VARCHAR},
+    parent_id = #{parentId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
