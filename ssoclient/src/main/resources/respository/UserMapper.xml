@@ -112,4 +112,10 @@
     and account = #{account,jdbcType=VARCHAR}
   </select>
 
+  <select id="getUserList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_user
+  </select>
+
 </mapper>

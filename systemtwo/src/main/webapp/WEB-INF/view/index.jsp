@@ -17,5 +17,8 @@
 
 <h2>欢迎来到首页</h2>
 
+
+<a href="http://127.0.0.1:8081/index/welcome">跳转到systemone应用</a>
+<a href="http://127.0.0.1:8081/logout">退出</a>
 </body>
 </html>

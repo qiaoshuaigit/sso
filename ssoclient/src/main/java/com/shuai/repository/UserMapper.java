@@ -1,9 +1,9 @@
 package com.shuai.repository;
 
 import com.shuai.entity.User;
-import org.springframework.stereotype.Repository;
 
-@Repository
+import java.util.List;
+
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -18,4 +18,6 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
 
     User getUserByAccount(String account);
+
+    List<User> getUserList();
 }

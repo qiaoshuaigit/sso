@@ -20,6 +20,7 @@
 			<value>
 				/shiro-cas = casFilter
 				/logout = logoutFilter
+				/resources/** = anon
 				/** = user
 			</value>
 		</property>
@@ -47,28 +48,53 @@
 
 	<!-- Shiro's main business-tier object for web-enabled applications -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-		<!-- <property name="sessionManager" ref="sessionManager" /> -->
+		<property name="sessionManager" ref="sessionManager" />
 		<property name="subjectFactory" ref="casSubjectFactory"></property>
 		<property name="realm" ref="casRealm" />
+		<property name="rememberMeManager" ref="rememberMeManager" />
+	</bean>
+
+	<bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+		<property name="cipherKey"
+				  value="#{T(org.apache.shiro.codec.Base64).decode('1tC/xrDYs8ey+sa3emtiYw==')}" />
+		<property name="cookie" ref="rememberMeCookie" />
+	</bean>
+
+	<!-- sessionIdCookie：maxAge=-1表示浏览器关闭时失效此Cookie； -->
+	<!-- rememberMeCookie：即记住我的Cookie，保存时长7天； -->
+	<bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+		<constructor-arg value="rememberMe" />
+		<property name="httpOnly" value="true" />
+		<property name="maxAge" value="-1" /><!-- 7天 单位秒 -->
 	</bean>
 
 	<bean id="casSubjectFactory" class="org.apache.shiro.cas.CasSubjectFactory"></bean>
-
-
 
 	<bean
 		class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
 		<property name="securityManager" ref="securityManager" />
 	</bean>
 
+	<!-- Session ID 生成器 -->
+	<bean id="sessionIdGenerator" class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator">
+	</bean>
+	<!-- Session DAO 继承自EnterpriseCacheSessionDAO-->
+	<bean id="sessionDAO" class="org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO">
+		<property name="sessionIdGenerator" ref="sessionIdGenerator"/>
+	</bean>
 
-	<!-- <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager"> 
-		<property name="globalSessionTimeout" value="3600000" /> <property name="sessionDAO" 
-		ref="sessionDAO" /> </bean> -->
+	<!-- 会话管理器 -->
+	<bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+		<property name="globalSessionTimeout" value="1800000"/> <!-- Session失效时长，单位毫秒 -->
+		<!-- 是否定期检查Session的有效性 -->
+		<property name="sessionValidationSchedulerEnabled" value="true"/>
+		<property name="sessionDAO" ref="sessionDAO"/>
+		<property name="cacheManager" ref="cacheManager"/>
+	</bean>
 
-	<!-- <bean id="sessionDAO" class="com.distinct.web.session.redis.RedisSessionDAO"> 
-		<property name="sessionTimeout" value="1800000" /> <property name="redisManager" 
-		ref="redisManager" /> </bean> -->
+	<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+		<property name="cacheManagerConfigFile" value="classpath:/ehcache.xml"/>
+	</bean>
 
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"></bean>
 
