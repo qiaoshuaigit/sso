@@ -12,6 +12,7 @@
         <module>ssoclient</module>
         <module>systemone</module>
         <module>systemtwo</module>
+        <module>systemfour</module>
     </modules>
 
 

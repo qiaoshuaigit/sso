@@ -48,10 +48,10 @@
 
 	<!-- Shiro's main business-tier object for web-enabled applications -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-		<property name="sessionManager" ref="sessionManager" />
+		<!--<property name="sessionManager" ref="sessionManager" />-->
 		<property name="subjectFactory" ref="casSubjectFactory"></property>
 		<property name="realm" ref="casRealm" />
-		<property name="rememberMeManager" ref="rememberMeManager" />
+		<!--<property name="rememberMeManager" ref="rememberMeManager" />-->
 	</bean>
 
 	<bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
@@ -63,9 +63,10 @@
 	<!-- sessionIdCookie：maxAge=-1表示浏览器关闭时失效此Cookie； -->
 	<!-- rememberMeCookie：即记住我的Cookie，保存时长7天； -->
 	<bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
-		<constructor-arg value="rememberMe" />
+		<constructor-arg value="remember-Me" />
 		<property name="httpOnly" value="true" />
 		<property name="maxAge" value="-1" /><!-- 7天 单位秒 -->
+		<property name="path" value="/"/>
 	</bean>
 
 	<bean id="casSubjectFactory" class="org.apache.shiro.cas.CasSubjectFactory"></bean>

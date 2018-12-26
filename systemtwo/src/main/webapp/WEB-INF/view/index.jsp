@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: shuai
@@ -18,7 +19,8 @@
 <h2>欢迎来到首页</h2>
 
 
-<a href="http://127.0.0.1:8081/index/welcome">跳转到systemone应用</a>
-<a href="http://127.0.0.1:8081/logout">退出</a>
+<a href="http://127.0.0.1:8081/index/welcome">跳转到systemone应用</a><br>
+<a href="http://127.0.0.1:8084/index/welcome">跳转到systemfour应用</a><br>
+<a href="http://127.0.0.1:8082/logout">退出</a>
 </body>
 </html>

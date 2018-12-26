@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 此注解会自动注册DefaulAunotationHandleMapping和AnnotationMethodHandleerAdapter2个bean，
+        是springmvc为@controller分发请求所必须的 -->
+    <mvc:annotation-driven enable-matrix-variables="true"/>
+
+    <!--试图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/view/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+    <!--扫描controller注解-->
+    <context:component-scan base-package="com.shuai.controller"/>
+
+    <!--spring对静态资源的访问方式 2种注解-->
+    <!--1:会把"/**" url,注册到SimpleUrlHandlerMapping的urlMap中,把对静态资源的访问由HandlerMapping
+        转到org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler处理并返回.-->
+    <!--<mvc:default-servlet-handler />-->
+    <!--2：使用<mvc:resources/>元素,把mapping的URI注册到SimpleUrlHandlerMapping的urlMap中,
+       key为mapping的URI pattern值,而value为ResourceHttpRequestHandler,
+       这样就巧妙的把对静态资源的访问由HandlerMapping转到ResourceHttpRequestHandler处理并返回,
+       所以就支持classpath目录,jar包内静态资源的访问-->
+    <mvc:resources mapping="/resources/**" location="resources/" />
+
+
+</beans>

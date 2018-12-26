@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: shuai
@@ -16,11 +16,7 @@
 </head>
 <body>
 
-<h2>登录成功${user}</h2>
+<h2>验证失败</h2>
 
-
-<a href="http://127.0.0.1:8081/index/welcome">跳转到systemone应用</a></body></br>
-<a href="http://127.0.0.1:8084/index/welcome">跳转到systemfour应用</a></br>
-<a href="http://127.0.0.1:8081/logout">退出</a>
 </body>
 </html>
