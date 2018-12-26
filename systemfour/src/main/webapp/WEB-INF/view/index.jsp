@@ -17,6 +17,12 @@
 
 <h2>欢迎来到首页</h2>
 
+sessionId:${sessionId} </br>
+session starttime:${sessionstartTime} </br>
+cookies:</br>
+<c:forEach items="${cookies}" var="cookie">
+    ${cookie.name} </br>
+</c:forEach>
 
 <a href="http://127.0.0.1:8081/index/welcome">跳转到systemone应用</a></br>
 <a href="http://127.0.0.1:8082/index/welcome">跳转到systemtwo应用</a></br>

@@ -67,6 +67,7 @@
 		<property name="httpOnly" value="true" />
 		<property name="maxAge" value="-1" /><!-- 7天 单位秒 -->
 		<property name="path" value="/"/>
+		<property name="domain" value=".sojson.com"/>
 	</bean>
 
 	<bean id="casSubjectFactory" class="org.apache.shiro.cas.CasSubjectFactory"></bean>

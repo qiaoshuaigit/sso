@@ -15,5 +15,17 @@
         <module>systemfour</module>
     </modules>
 
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-catalina
+           查看源码
+        -->
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-catalina</artifactId>
+            <version>8.0.8</version>
+        </dependency>
+
+    </dependencies>
+
 
 </project>
