@@ -48,7 +48,7 @@
 
 	<!-- Shiro's main business-tier object for web-enabled applications -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-		<!--<property name="sessionManager" ref="sessionManager" />-->
+		<property name="sessionManager" ref="sessionManager" />
 		<property name="subjectFactory" ref="casSubjectFactory"></property>
 		<property name="realm" ref="casRealm" />
 		<!--<property name="rememberMeManager" ref="rememberMeManager" />-->
@@ -90,8 +90,22 @@
 		<property name="globalSessionTimeout" value="1800000"/> <!-- Session失效时长，单位毫秒 -->
 		<!-- 是否定期检查Session的有效性 -->
 		<property name="sessionValidationSchedulerEnabled" value="true"/>
-		<property name="sessionDAO" ref="sessionDAO"/>
-		<property name="cacheManager" ref="cacheManager"/>
+		<property name="sessionDAO" ref="redisSessionDao"/>
+		<!--<property name="cacheManager" ref="cacheManager"/>-->
+
+		<property name="sessionIdCookie" ref="sharesession"/>
+	</bean>
+
+	<!-- sessionIdCookie的实现,用于重写覆盖容器默认的JSESSIONID -->
+	<bean id="sharesession" class="org.apache.shiro.web.servlet.SimpleCookie">
+		<!-- cookie的name,对应的默认是 JSESSIONID -->
+		<constructor-arg name="name" value="SHAREJSESSIONID"/>
+		<!-- jsessionId的path为 / 用于多个系统共享jsessionId -->
+		<property name="path" value="/"/>
+	</bean>
+
+	<bean id="redisSessionDao" class="com.shuai.redis.RedisSessionDao">
+		<property name="expire" value="${shiro.session.timeout}"/>
 	</bean>
 
 	<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
